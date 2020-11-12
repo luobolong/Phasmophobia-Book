@@ -1,6 +1,6 @@
 # Phasmophobia-Book
-玩恐鬼症自用的查找鬼魂类型的安卓软件  
+个人制作的恐鬼症游戏中查找鬼魂类型的安卓软件  
 目前只支持中文  
   
-My own Android app for better looking up ghost types in Phasmophobia game.  
-Only support Simplified Chinese right now.
+A personally made Android app for better looking up ghost types in Phasmophobia game.  
+Only support simplified Chinese right now.
