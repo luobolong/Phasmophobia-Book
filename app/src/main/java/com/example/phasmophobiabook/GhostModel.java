@@ -4,17 +4,11 @@ import androidx.annotation.NonNull;
 
 import java.util.*;
 
-public class GhostModel {
+public class GhostModel extends EvidenceModel {
     public String Name;
     public String Introduction;
     public String Strength;
     public String Weakness;
-    public boolean EMF_Level_5 = false;
-    public boolean Spirit_Box = false;
-    public boolean Freezing_Temperatures = false;
-    public boolean Fingerprints = false;
-    public boolean Ghost_Orb = false;
-    public boolean Ghost_Writing = false;
 
     @NonNull
     @Override
@@ -47,7 +41,7 @@ public class GhostModel {
                 evidence.append("、");
             }
         }
-        return Name + "\n" + Introduction + "\n特征：" + Strength + "\n弱点：" + Weakness + "\n所需证据：" + evidence.toString() + "。\n";
+        return Name + "\n" + Introduction + "\n特征：" + Strength + "\n弱点：" + Weakness + "\n缺少证据：" + evidence.toString() + "。\n\n";
     }
 
     public String toNeededEvidenceString(boolean emf_level_5, boolean spirit_box, boolean freezing_temperatures, boolean fingerprints, boolean ghost_orb, boolean ghost_writing) {
@@ -82,6 +76,6 @@ public class GhostModel {
                 needed_evidence.append("、");
             }
         }
-        return Name + "\n" + Introduction + "\n特征：" + Strength + "\n弱点：" + Weakness + "\n所需证据：" + needed_evidence.toString() + "。\n";
+        return Name + "\n" + Introduction + "\n特征：" + Strength + "\n弱点：" + Weakness + "\n缺少证据：" + needed_evidence.toString() + "。\n\n";
     }
 }

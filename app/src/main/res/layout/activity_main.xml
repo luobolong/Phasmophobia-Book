@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="EMF 5级"
+                android:text="@string/emf_5"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="通灵盒"
+                android:text="@string/spirit_box"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="刺骨寒温"
+                android:text="@string/freezing_temp"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="指纹"
+                android:text="@string/fingerprints"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="灵球"
+                android:text="@string/ghost_orb"
                 android:textSize="18sp" />
 
             <CheckBox
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="鬼魂笔记"
+                android:text="@string/ghost_writing"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -88,22 +88,10 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/buttonLookUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="查找"
-                android:textSize="20sp" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <Button
                 android:id="@+id/buttonClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="清除"
+                android:text="@string/clear"
                 android:textSize="20sp" />
 
             <Space
@@ -115,8 +103,13 @@
                 android:id="@+id/buttonCopy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="复制到剪切板"
+                android:text="@string/copy"
                 android:textSize="12sp" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
     </LinearLayout>
@@ -132,10 +125,10 @@
 
         <MultiAutoCompleteTextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:editable="false"
-            android:gravity="top|left"
+            android:hint=" "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textColorLink="#FFFFFF" />

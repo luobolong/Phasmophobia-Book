@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">恐鬼症图鉴</string>
+    <string name="emf_5">EMF 5级</string>
+    <string name="spirit_box">通灵盒</string>
+    <string name="freezing_temp">刺骨寒温</string>
+    <string name="fingerprints">指纹</string>
+    <string name="ghost_orb">灵球</string>
+    <string name="ghost_writing">鬼魂笔记</string>
+    <string name="copy">复制到剪切板</string>
+    <string name="clear">清除</string>
 </resources>

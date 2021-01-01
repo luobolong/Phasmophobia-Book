@@ -3,6 +3,7 @@ package com.example.phasmophobiabook;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -16,7 +17,7 @@ import java.util.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private static List<GhostModel> ghosts = new ArrayList<GhostModel>() {{
+    private static final List<GhostModel> ghosts = new ArrayList<GhostModel>() {{
         add(new GhostModel() {{
             Name = "魂魄"; Introduction = "魂魄是最常见的鬼魂，但它仍不容小觑。它通常会在死者死因不明的区域出现。"; Strength = "无。"; Weakness = "在魂魄附近点燃圣木会在一段时间内阻止它的攻击。"; Spirit_Box = true; Fingerprints = true; Ghost_Writing = true;
         }});
@@ -54,13 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Name = "赤鬼"; Introduction = "赤鬼是恶魔的亲戚，拥有超强的力量。传言道他们会在猎物周围变得更加活跃。"; Strength = "当有人在附近时，他会更加活跃。赤鬼也可以高速移动物品。"; Weakness = "玩家更活跃会使赤鬼更容易被找到和识别。"; EMF_Level_5 = true; Spirit_Box = true; Ghost_Writing = true;
         }});
     }};
-    private List<GhostModel> matched_ghosts = new ArrayList<GhostModel>();
-    private EvidenceModel evidence_not_found = new EvidenceModel();
-    private EvidenceModel evidence_found = new EvidenceModel();
+    private final List<GhostModel> matched_ghosts = new ArrayList<>();
+    private final EvidenceModel evidence_not_found = new EvidenceModel();
+    private final EvidenceModel evidence_found = new EvidenceModel();
 
-    private Button buttonLookUp;
-    private Button buttonClear;
-    private Button buttonCopy;
     private CheckBox checkBox1;
     private CheckBox checkBox2;
     private CheckBox checkBox3;
@@ -73,9 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttonLookUp = findViewById(R.id.buttonLookUp);
-        buttonClear = findViewById(R.id.buttonClear);
-        buttonCopy = findViewById(R.id.buttonCopy);
+        Button buttonClear = findViewById(R.id.buttonClear);
+        Button buttonCopy = findViewById(R.id.buttonCopy);
         checkBox1 = findViewById(R.id.checkBox1);
         checkBox2 = findViewById(R.id.checkBox2);
         checkBox3 = findViewById(R.id.checkBox3);
@@ -84,18 +81,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         checkBox6 = findViewById(R.id.checkBox6);
         textView = findViewById(R.id.textView);
 
-        buttonLookUp.setOnClickListener(this);
         buttonClear.setOnClickListener(this);
         buttonCopy.setOnClickListener(this);
+
+        checkBox1.setOnClickListener(view -> FindGhosts());
+        checkBox2.setOnClickListener(view -> FindGhosts());
+        checkBox3.setOnClickListener(view -> FindGhosts());
+        checkBox4.setOnClickListener(view -> FindGhosts());
+        checkBox5.setOnClickListener(view -> FindGhosts());
+        checkBox6.setOnClickListener(view -> FindGhosts());
         ShowAllGhosts();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.buttonLookUp:
-                onClickButtonLookUp(view);
-                break;
             case R.id.buttonClear:
                 onClickButtonClear(view);
                 break;
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void ShowAllGhosts() {
         StringBuilder sb = new StringBuilder();
         for (GhostModel ghost: ghosts) {
-            sb.append(ghost.toString() + "\n");
+            sb.append(ghost.toString());
         }
         textView.setText(sb.toString().trim());
     }
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         StringBuilder sb = new StringBuilder();
         for (GhostModel ghost: ghosts) {
-            sb.append(ghost.toNeededEvidenceString(emf_level_5, spirit_box, freezing_temperatures, fingerprints, ghost_orb, ghost_writing) + "\n");
+            sb.append(ghost.toNeededEvidenceString(emf_level_5, spirit_box, freezing_temperatures, fingerprints, ghost_orb, ghost_writing));
         }
         textView.setText(sb.toString().trim());
     }
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         evidence_found.Ghost_Writing = checkBox6.isChecked();
     }
 
-    private void FindNotFoundGhost() {
+    private void FindGhosts() {
         GetFoundEvidence();
         matched_ghosts.clear();
         for (GhostModel ghost: ghosts) {
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
         if (evidence_not_found.isAllFalse()) {
-            throw new Exception("没有所需的证据");
+            throw new Exception("没有缺少的证据");
         }
     }
 
@@ -198,10 +199,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData mClipData = ClipData.newPlainText("Label", string_evidence_not_found);
         cm.setPrimaryClip(mClipData);
-    }
-
-    private void onClickButtonLookUp(View view) {
-        FindNotFoundGhost();
     }
 
     private void onClickButtonClear(View view) {
