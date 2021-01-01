@@ -125,9 +125,10 @@
 
         <MultiAutoCompleteTextView
             android:id="@+id/textView"
-            android:hint=" "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:dropDownSelector="@android:color/holo_blue_bright"
+            android:editable="false"
             android:gravity="top|start"
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="#FFFFFF"
